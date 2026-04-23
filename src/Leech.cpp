@@ -66,8 +66,9 @@ public:
             return;
         }
 
-        auto const& reqIds = Leech_GetRequiredItemIds();
-		if (!reqIds.empty())
+		auto const& reqIds = Leech_GetRequiredItemIds();
+		// Skip item check if only "0" is specified (means "no item required")
+		if (!reqIds.empty() && !(reqIds.size() == 1 && reqIds[0] == 0))
 		{
 			bool hasAny = false;
 			for (uint32 id : reqIds)
